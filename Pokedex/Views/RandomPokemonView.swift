@@ -25,6 +25,13 @@ struct RandomPokemonView: View {
 				AsyncImage(url: URL(string: pokemon.sprites?.frontDefault ?? ""))
 					.frame(width: 150, height: 150)
 				Text("Type: \(pokemon.types?.first?.type?.name?.capitalized ?? "")")
+				
+				if let evolutionChain = viewModel.evolutionChain {
+					EvolutionChainView(viewModel: EvolutionChainViewModel(chain: evolutionChain))
+				}
+
+				Spacer()
+
 			} else {
 				ProgressView()
 			}

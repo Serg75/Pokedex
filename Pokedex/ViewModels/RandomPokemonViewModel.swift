@@ -10,7 +10,8 @@ import PokemonAPI
 
 @MainActor class RandomPokemonViewModel: ObservableObject {
 	@Published var pokemon: PKMPokemon?
-	
+	@Published var evolutionChain: PKMEvolutionChain?
+
 	private var isFetching = false
 
 	init() {
@@ -23,6 +24,9 @@ import PokemonAPI
 	
 	init(pokemon: PKMPokemon) {
 		self.pokemon = pokemon
+		Task {
+			await fetchEvolutionChain(pokemonId: pokemon.id)
+		}
 	}
 
 	func fetchRandomPokemon() {
@@ -52,15 +56,31 @@ import PokemonAPI
 
 			self.isFetching = false
 			
-			if !isValid {
+			guard isValid else {
 				// refetch pokemon
 				self.fetchRandomPokemon()
+				return
 			}
-
+			
+			await fetchEvolutionChain(pokemonId: pokemonID)
 		}
 	}
 
 	private func generateRandomPokemonID(pokemonsCount: Int) -> Int {
 		Int.random(in: 1..<pokemonsCount)
+	}
+	
+	private func fetchEvolutionChain(pokemonId: Int?) async {
+		do {
+			let species = try await PokemonAPI().pokemonService.fetchPokemonSpecies(pokemonId!)
+			let evoChainURL = URL(string: (species.evolutionChain?.url)!)
+			let evolutionChain = try await PokemonAPI().evolutionService.fetchEvolutionChain((evoChainURL?.extractedID!)!)
+			
+			DispatchQueue.main.async {
+				self.evolutionChain = evolutionChain
+			}
+		} catch {
+			print(error.localizedDescription)
+		}
 	}
 }

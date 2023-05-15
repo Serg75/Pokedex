@@ -13,4 +13,8 @@ struct PreviewData {
 	static var Pokemon607: PKMPokemon = {
 		return Bundle.main.decodeJSON("pokemon607", type: PKMPokemon.self)
 	}()
+	
+	static var EvolutionChain: PKMEvolutionChain = {
+		return Bundle.main.decodeJSON("evolution_chain", type: PKMEvolutionChain.self)
+	}()
 }
