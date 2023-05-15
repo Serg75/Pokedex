@@ -25,6 +25,8 @@
 		95AEE4022A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4012A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift */; };
 		95AEE4042A124BC800BE1A17 /* evolution_chain308.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE4032A124BC800BE1A17 /* evolution_chain308.json */; };
 		95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */; };
+		95AEE4082A12672A00BE1A17 /* evolution_chain26.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE4072A12672A00BE1A17 /* evolution_chain26.json */; };
+		95AEE40B2A12E76D00BE1A17 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE40A2A12E76D00BE1A17 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		95AEE4012A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainLinkViewModel.swift; sourceTree = "<group>"; };
 		95AEE4032A124BC800BE1A17 /* evolution_chain308.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = evolution_chain308.json; sourceTree = "<group>"; };
 		95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainLinkView.swift; sourceTree = "<group>"; };
+		95AEE4072A12672A00BE1A17 /* evolution_chain26.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = evolution_chain26.json; sourceTree = "<group>"; };
+		95AEE40A2A12E76D00BE1A17 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				9544427E2A12247A002D9C3C /* PokedexApp.swift */,
+				95AEE4092A12E73E00BE1A17 /* Models */,
 				95AEE3F12A122BC900BE1A17 /* ViewModels */,
 				95AEE3EB2A122B4300BE1A17 /* Views */,
 				95AEE3F62A122CB400BE1A17 /* Extensions */,
@@ -132,6 +137,7 @@
 				954442852A12247B002D9C3C /* Preview Assets.xcassets */,
 				95AEE3F42A122C9500BE1A17 /* PreviewData.swift */,
 				95AEE3F92A122D0E00BE1A17 /* pokemon607.json */,
+				95AEE4072A12672A00BE1A17 /* evolution_chain26.json */,
 				95AEE4032A124BC800BE1A17 /* evolution_chain308.json */,
 			);
 			path = "Preview Content";
@@ -167,9 +173,9 @@
 		95AEE3F12A122BC900BE1A17 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				95AEE3F22A122BED00BE1A17 /* RandomPokemonViewModel.swift */,
 				95AEE3FD2A122EB500BE1A17 /* EvolutionChainViewModel.swift */,
 				95AEE4012A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift */,
+				95AEE3F22A122BED00BE1A17 /* RandomPokemonViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -181,6 +187,14 @@
 				95AEE3FF2A123A3F00BE1A17 /* URL-ID.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		95AEE4092A12E73E00BE1A17 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				95AEE40A2A12E76D00BE1A17 /* Item.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				954442862A12247B002D9C3C /* Preview Assets.xcassets in Resources */,
+				95AEE4082A12672A00BE1A17 /* evolution_chain26.json in Resources */,
 				954442832A12247B002D9C3C /* Assets.xcassets in Resources */,
 				95AEE3FA2A122D0E00BE1A17 /* pokemon607.json in Resources */,
 				95AEE4042A124BC800BE1A17 /* evolution_chain308.json in Resources */,
@@ -327,6 +342,7 @@
 				95AEE3F32A122BED00BE1A17 /* RandomPokemonViewModel.swift in Sources */,
 				95AEE4002A123A3F00BE1A17 /* URL-ID.swift in Sources */,
 				95AEE3F82A122CE200BE1A17 /* Bundle-JSON.swift in Sources */,
+				95AEE40B2A12E76D00BE1A17 /* Item.swift in Sources */,
 				9544427F2A12247A002D9C3C /* PokedexApp.swift in Sources */,
 				95AEE4022A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift in Sources */,
 				95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */,
