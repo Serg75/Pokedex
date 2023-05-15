@@ -13,12 +13,14 @@ import PokemonAPI
 	private let evolutionService = PokemonAPI().evolutionService
 	
 	@Published var speciesName: String = ""
+	@Published var speciesImage: URL?
 	@Published var evolvesTo: [PKMClainLink]?
 	@Published var evolutionItems: [PKMItem?] = []
 	
 	init(link: PKMClainLink) {
 		self.link = link
 		fetchSpeciesName()
+		fetchSpeciesImage()
 		fetchEvolvesTo()
 	}
 	
@@ -26,6 +28,24 @@ import PokemonAPI
 		guard let species = link.species else { return }
 
 		speciesName = species.name ?? ""
+	}
+	
+	private func fetchSpeciesImage() {
+		if let resource = link.species {
+			Task {
+				do {
+					let species = try await PokemonAPI().resourceService.fetch(resource)
+					if let id = species.id {
+						let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(id)
+						if let url = URL(string: pokemon.sprites?.frontDefault ?? "") {
+							speciesImage = url
+						}
+					}
+				} catch {
+					print(error)
+				}
+			}
+		}
 	}
 	
 	private func fetchEvolvesTo() {

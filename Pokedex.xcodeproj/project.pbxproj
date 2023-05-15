@@ -23,7 +23,8 @@
 		95AEE3FE2A122EB500BE1A17 /* EvolutionChainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE3FD2A122EB500BE1A17 /* EvolutionChainViewModel.swift */; };
 		95AEE4002A123A3F00BE1A17 /* URL-ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE3FF2A123A3F00BE1A17 /* URL-ID.swift */; };
 		95AEE4022A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4012A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift */; };
-		95AEE4042A124BC800BE1A17 /* evolution_chain.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE4032A124BC800BE1A17 /* evolution_chain.json */; };
+		95AEE4042A124BC800BE1A17 /* evolution_chain308.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE4032A124BC800BE1A17 /* evolution_chain308.json */; };
+		95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +63,8 @@
 		95AEE3FD2A122EB500BE1A17 /* EvolutionChainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainViewModel.swift; sourceTree = "<group>"; };
 		95AEE3FF2A123A3F00BE1A17 /* URL-ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL-ID.swift"; sourceTree = "<group>"; };
 		95AEE4012A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainLinkViewModel.swift; sourceTree = "<group>"; };
-		95AEE4032A124BC800BE1A17 /* evolution_chain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = evolution_chain.json; sourceTree = "<group>"; };
+		95AEE4032A124BC800BE1A17 /* evolution_chain308.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = evolution_chain308.json; sourceTree = "<group>"; };
+		95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainLinkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +132,7 @@
 				954442852A12247B002D9C3C /* Preview Assets.xcassets */,
 				95AEE3F42A122C9500BE1A17 /* PreviewData.swift */,
 				95AEE3F92A122D0E00BE1A17 /* pokemon607.json */,
-				95AEE4032A124BC800BE1A17 /* evolution_chain.json */,
+				95AEE4032A124BC800BE1A17 /* evolution_chain308.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				95AEE3FB2A122E8000BE1A17 /* EvolutionChainView.swift */,
+				95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */,
 				95AEE3EC2A122B6200BE1A17 /* RandomPokemonView.swift */,
 			);
 			path = Views;
@@ -293,7 +296,7 @@
 				954442862A12247B002D9C3C /* Preview Assets.xcassets in Resources */,
 				954442832A12247B002D9C3C /* Assets.xcassets in Resources */,
 				95AEE3FA2A122D0E00BE1A17 /* pokemon607.json in Resources */,
-				95AEE4042A124BC800BE1A17 /* evolution_chain.json in Resources */,
+				95AEE4042A124BC800BE1A17 /* evolution_chain308.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +329,7 @@
 				95AEE3F82A122CE200BE1A17 /* Bundle-JSON.swift in Sources */,
 				9544427F2A12247A002D9C3C /* PokedexApp.swift in Sources */,
 				95AEE4022A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift in Sources */,
+				95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */,
 				95AEE3ED2A122B6200BE1A17 /* RandomPokemonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
