@@ -9,7 +9,7 @@ import Foundation
 import PokemonAPI
 
 @MainActor class RandomPokemonViewModel: ObservableObject {
-	@Published var pokemon: PKMPokemon?
+	@Published var currentPokemon: PKMPokemon?
 	@Published var evolutionChain: PKMEvolutionChain?
 
 	private var isFetching = false
@@ -23,7 +23,7 @@ import PokemonAPI
 	}
 	
 	init(pokemon: PKMPokemon) {
-		self.pokemon = pokemon
+		self.currentPokemon = pokemon
 		Task {
 			await fetchEvolutionChain(pokemonId: pokemon.id)
 		}
@@ -34,6 +34,7 @@ import PokemonAPI
 		isFetching = true
 
 		Task {
+			currentPokemon = nil
 			var pokemonID = -1
 			var isValid = false
 			do {
@@ -45,7 +46,7 @@ import PokemonAPI
 				isValid = true
 				
 				DispatchQueue.main.async {
-					self.pokemon = pokemon
+					self.currentPokemon = pokemon
 				}
 				
 			} catch HTTPError.serverResponse(HTTPStatus(rawValue: 404), _ ) {

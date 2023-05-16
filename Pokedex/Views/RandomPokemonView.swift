@@ -6,20 +6,19 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import PokemonAPI
 
 struct RandomPokemonView: View {
 	@ObservedObject private(set) var viewModel: RandomPokemonViewModel
+	@StateObject private var signals = Signals()
 
 	@State private var isShowingCodeInputView = false
 	@State private var isShowingSavedPokemonView = false
 	@State private var code = ""
-
+	
 	var body: some View {
 		VStack {
-			if let pokemon = viewModel.pokemon {
+			if let pokemon = viewModel.currentPokemon {
 				Text(pokemon.name?.capitalized ?? "No name")
 					.font(.title)
 				AsyncImage(url: URL(string: pokemon.sprites?.frontDefault ?? ""))
@@ -39,12 +38,19 @@ struct RandomPokemonView: View {
 			}
 			.padding(.top, 20)
 			.sheet(isPresented: $isShowingCodeInputView) {
-				ParentsView(onDismiss: {
+				ParentsView(pokemon: $viewModel.currentPokemon, onDismiss: {
 					self.isShowingCodeInputView = false
 				})
 			}
 		}
 		.padding(.vertical, 5)
+		.environmentObject(signals)
+		.onChange(of: signals.askRandomPokemon) { newValue in
+			if newValue {
+				viewModel.fetchRandomPokemon()
+				signals.askRandomPokemon = false
+			}
+		}
 	}
 }
 

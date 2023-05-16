@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import PokemonAPI
 
 struct ParentsView: View {
 	@StateObject private var viewModel = ParentsViewModel()
+	
+	@Binding var pokemon: PKMPokemon?
 	
 	let onDismiss: () -> Void
 	
@@ -61,7 +64,7 @@ struct ParentsView: View {
 						
 						Spacer()
 					}
-					.font(.title)
+					.font(.title2)
 					.padding(.top, 20)
 					.padding(.bottom, 10)
 				}
@@ -73,7 +76,7 @@ struct ParentsView: View {
 			}
 			
 			if viewModel.showSecondView {
-				SavedPokemonView(onDismiss: {
+				SavedPokemonView(pokemon: $pokemon, onDismiss: {
 					// Dismiss whole view
 					onDismiss()
 				})
@@ -90,6 +93,7 @@ struct ParentsView: View {
 
 struct ParentsView_Previews: PreviewProvider {
     static var previews: some View {
-		ParentsView(onDismiss: {})
+		@State var pokemon: PKMPokemon? = nil
+		ParentsView(pokemon: $pokemon, onDismiss: {})
     }
 }
