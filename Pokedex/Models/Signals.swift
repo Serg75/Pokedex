@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum PokemonType {
+	case random
+	case exact(Int)
+}
+
 @MainActor class Signals: ObservableObject {
-	@Published var askRandomPokemon = false
+	@Published var changePokemon = false
+	var pokemonType: PokemonType?
 }

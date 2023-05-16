@@ -49,7 +49,6 @@ struct ParentsView: View {
 							// Dismiss the view
 							onDismiss()
 						}
-						.foregroundColor(.blue)
 						// to have equal width for left and right views
 						.frame(maxWidth: .infinity)
 						
@@ -58,7 +57,6 @@ struct ParentsView: View {
 						Button("Enter") {
 							viewModel.checkCode()
 						}
-						.foregroundColor(.blue)
 						// to have equal width for left and right views
 						.frame(maxWidth: .infinity)
 						
@@ -69,7 +67,7 @@ struct ParentsView: View {
 					.padding(.bottom, 10)
 				}
 				.padding()
-				.background(Color.white)
+				.background(Color(.systemGray6))
 				.cornerRadius(10)
 				.shadow(radius: 10)
 				.transition(.move(edge: .leading))

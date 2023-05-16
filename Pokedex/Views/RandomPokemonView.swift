@@ -45,10 +45,18 @@ struct RandomPokemonView: View {
 		}
 		.padding(.vertical, 5)
 		.environmentObject(signals)
-		.onChange(of: signals.askRandomPokemon) { newValue in
+		.onChange(of: signals.changePokemon) { newValue in
 			if newValue {
-				viewModel.fetchRandomPokemon()
-				signals.askRandomPokemon = false
+				switch signals.pokemonType {
+				case .random:
+					viewModel.fetchRandomPokemon()
+					signals.changePokemon = false
+				case .exact(let id):
+					viewModel.fetchExactPokemon(id: id)
+					signals.changePokemon = false
+				case .none:
+					print("none")
+				}
 			}
 		}
 	}

@@ -35,6 +35,7 @@
 		95AEE4172A139B2A00BE1A17 /* SavedPokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4162A139B2A00BE1A17 /* SavedPokemonView.swift */; };
 		95AEE4192A139B6A00BE1A17 /* SavedPokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4182A139B6A00BE1A17 /* SavedPokemonViewModel.swift */; };
 		95AEE41B2A141A9300BE1A17 /* Signals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE41A2A141A9300BE1A17 /* Signals.swift */; };
+		95AEE41D2A143ED400BE1A17 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE41C2A143ED400BE1A17 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		95AEE4162A139B2A00BE1A17 /* SavedPokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPokemonView.swift; sourceTree = "<group>"; };
 		95AEE4182A139B6A00BE1A17 /* SavedPokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPokemonViewModel.swift; sourceTree = "<group>"; };
 		95AEE41A2A141A9300BE1A17 /* Signals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signals.swift; sourceTree = "<group>"; };
+		95AEE41C2A143ED400BE1A17 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				95AEE4142A1397D900BE1A17 /* AlertItem.swift */,
 				95AEE40A2A12E76D00BE1A17 /* PresentedItem.swift */,
 				95AEE41A2A141A9300BE1A17 /* Signals.swift */,
+				95AEE41C2A143ED400BE1A17 /* Pokemon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				95AEE4132A13972800BE1A17 /* ParentsViewModel.swift in Sources */,
 				95AEE40D2A137C2D00BE1A17 /* EvolutionHeldItemView.swift in Sources */,
 				95AEE3F52A122C9500BE1A17 /* PreviewData.swift in Sources */,
+				95AEE41D2A143ED400BE1A17 /* Pokemon.swift in Sources */,
 				95AEE3F32A122BED00BE1A17 /* RandomPokemonViewModel.swift in Sources */,
 				95AEE4002A123A3F00BE1A17 /* URL-ID.swift in Sources */,
 				95AEE3F82A122CE200BE1A17 /* Bundle-JSON.swift in Sources */,

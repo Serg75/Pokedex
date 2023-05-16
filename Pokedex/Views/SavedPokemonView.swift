@@ -12,37 +12,47 @@ struct SavedPokemonView: View {
 	@StateObject private var viewModel = SavedPokemonViewModel()
 	@EnvironmentObject private var signals: Signals
 	
-	var pokemon: PKMPokemon?
+	@State private var selectedPokemon: Int? = nil
+	
+	private var pokemon: PKMPokemon?
 	
 	init(pokemon: PKMPokemon?, onDismiss: @escaping () -> Void) {
 		self.pokemon = pokemon
 		self.onDismiss = onDismiss
 	}
 	
-	let onDismiss: () -> Void
+	private let onDismiss: () -> Void
 	
 	var body: some View {
 		VStack {
-			Text("Saved Pokémon")
+			Text("Saved Pokémons")
 				.font(.title)
 				.padding(.bottom, 20)
 			
-			List(viewModel.savedPokemons) { pokemon in
+			List(viewModel.savedPokemons, selection: $selectedPokemon) { pokemon in
 				Text(pokemon.name)
 			}
 			
 			Button("Save Current Pokémon") {
 				viewModel.saveCurrentPokemon()
 			}
-			.foregroundColor(.blue)
+			.font(.title2)
+			.padding(.vertical, 10)
+			
+			Button("Take selected Pokémon") {
+				signals.pokemonType = .exact(selectedPokemon!)
+				signals.changePokemon = true
+				onDismiss()
+			}
+			.disabled(selectedPokemon == nil)
 			.font(.title2)
 			.padding(.vertical, 10)
 			
 			Button("New Random Pokémon") {
-				signals.askRandomPokemon = true
+				signals.pokemonType = .random
+				signals.changePokemon = true
 				onDismiss()
 			}
-			.foregroundColor(.blue)
 			.font(.title2)
 			.padding(.vertical, 10)
 
@@ -51,11 +61,10 @@ struct SavedPokemonView: View {
 			Button("Close") {
 				onDismiss()
 			}
-			.foregroundColor(.blue)
 			.font(.title2)
 		}
 		.padding()
-		.background(Color.white)
+		.background(Color(.systemGray6))
 		.cornerRadius(10)
 		.shadow(radius: 10)
 		.onAppear() {

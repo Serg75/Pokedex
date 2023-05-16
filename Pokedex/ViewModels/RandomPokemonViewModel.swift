@@ -30,6 +30,18 @@ import PokemonAPI
 	}
 
 	func fetchRandomPokemon() {
+		fetchPokemon {
+			let pokemons = try await PokemonAPI().pokemonService.fetchPokemonList(paginationState: .initial(pageLimit: 5))
+			
+			return self.generateRandomPokemonID(pokemonsCount: pokemons.count!)
+		}
+	}
+
+	func fetchExactPokemon(id: Int) {
+		fetchPokemon { id }
+	}
+
+	func fetchPokemon(takePokemonID: @escaping () async throws -> Int) {
 		guard !isFetching else { return }
 		isFetching = true
 
@@ -38,10 +50,7 @@ import PokemonAPI
 			var pokemonID = -1
 			var isValid = false
 			do {
-				let pokemons = try await PokemonAPI().pokemonService.fetchPokemonList(paginationState: .initial(pageLimit: 5))
-				
-				pokemonID = generateRandomPokemonID(pokemonsCount: pokemons.count!)
-				
+				pokemonID = try await takePokemonID()
 				let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(pokemonID)
 				isValid = true
 				

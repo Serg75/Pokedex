@@ -45,18 +45,4 @@ import PokemonAPI
 			}
 		}
 	}
-	
-	func takeSelectedPokemon() {
-		
-	}
-}
-
-struct Pokemon : Codable, Identifiable {
-	let id: Int
-	let name: String
-	
-	init(_ pokemon: PKMPokemon) {
-		self.id = pokemon.id ?? 0
-		self.name = pokemon.name ?? "No name"
-	}
 }
