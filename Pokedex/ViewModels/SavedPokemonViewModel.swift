@@ -23,6 +23,11 @@ import PokemonAPI
 		if let savedPokemons = UserDefaults.standard.array(forKey: savedPokemonKey) as? [Pokemon] {
 			self.savedPokemons = savedPokemons
 		}
+		if let data = UserDefaults.standard.data(forKey: savedPokemonKey) {
+			if let savedPokemons = try? JSONDecoder().decode([Pokemon].self, from: data) {
+				self.savedPokemons = savedPokemons
+			}
+		}
 	}
 
 	func saveCurrentPokemon() {
@@ -35,7 +40,9 @@ import PokemonAPI
 
 			let newPokemon = Pokemon(pokemon)
 			savedPokemons.append(newPokemon)
-			UserDefaults.standard.set(savedPokemons, forKey: savedPokemonKey)
+			if let encoded = try? JSONEncoder().encode(savedPokemons) {
+				UserDefaults.standard.set(encoded, forKey: savedPokemonKey)
+			}
 		}
 	}
 	
@@ -44,11 +51,12 @@ import PokemonAPI
 	}
 }
 
-struct Pokemon: Identifiable {
-	let id = UUID()
+struct Pokemon : Codable, Identifiable {
+	let id: Int
 	let name: String
 	
 	init(_ pokemon: PKMPokemon) {
+		self.id = pokemon.id ?? 0
 		self.name = pokemon.name ?? "No name"
 	}
 }

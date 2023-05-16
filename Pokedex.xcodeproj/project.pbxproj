@@ -34,6 +34,7 @@
 		95AEE4152A1397D900BE1A17 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4142A1397D900BE1A17 /* AlertItem.swift */; };
 		95AEE4172A139B2A00BE1A17 /* SavedPokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4162A139B2A00BE1A17 /* SavedPokemonView.swift */; };
 		95AEE4192A139B6A00BE1A17 /* SavedPokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4182A139B6A00BE1A17 /* SavedPokemonViewModel.swift */; };
+		95AEE41B2A141A9300BE1A17 /* Signals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE41A2A141A9300BE1A17 /* Signals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		95AEE4142A1397D900BE1A17 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		95AEE4162A139B2A00BE1A17 /* SavedPokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPokemonView.swift; sourceTree = "<group>"; };
 		95AEE4182A139B6A00BE1A17 /* SavedPokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPokemonViewModel.swift; sourceTree = "<group>"; };
+		95AEE41A2A141A9300BE1A17 /* Signals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 			children = (
 				95AEE4142A1397D900BE1A17 /* AlertItem.swift */,
 				95AEE40A2A12E76D00BE1A17 /* PresentedItem.swift */,
+				95AEE41A2A141A9300BE1A17 /* Signals.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				95AEE4192A139B6A00BE1A17 /* SavedPokemonViewModel.swift in Sources */,
 				95AEE4172A139B2A00BE1A17 /* SavedPokemonView.swift in Sources */,
 				95AEE40B2A12E76D00BE1A17 /* PresentedItem.swift in Sources */,
+				95AEE41B2A141A9300BE1A17 /* Signals.swift in Sources */,
 				9544427F2A12247A002D9C3C /* PokedexApp.swift in Sources */,
 				95AEE4022A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift in Sources */,
 				95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */,

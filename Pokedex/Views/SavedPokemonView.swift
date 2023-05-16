@@ -12,10 +12,11 @@ struct SavedPokemonView: View {
 	@StateObject private var viewModel = SavedPokemonViewModel()
 	@EnvironmentObject private var signals: Signals
 	
-	@Binding var pokemon: PKMPokemon? {
-		didSet {
-			viewModel.currentPokemon = pokemon
-		}
+	var pokemon: PKMPokemon?
+	
+	init(pokemon: PKMPokemon?, onDismiss: @escaping () -> Void) {
+		self.pokemon = pokemon
+		self.onDismiss = onDismiss
 	}
 	
 	let onDismiss: () -> Void
@@ -57,12 +58,15 @@ struct SavedPokemonView: View {
 		.background(Color.white)
 		.cornerRadius(10)
 		.shadow(radius: 10)
+		.onAppear() {
+			viewModel.currentPokemon = pokemon
+		}
 	}
 }
 
 struct SavedPokemonView_Previews: PreviewProvider {
 	static var previews: some View {
 		@State var pokemon: PKMPokemon? = nil
-		SavedPokemonView(pokemon: $pokemon, onDismiss: {})
+		SavedPokemonView(pokemon: nil, onDismiss: {})
 	}
 }

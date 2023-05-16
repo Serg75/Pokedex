@@ -76,7 +76,7 @@ struct ParentsView: View {
 			}
 			
 			if viewModel.showSecondView {
-				SavedPokemonView(pokemon: $pokemon, onDismiss: {
+				SavedPokemonView(pokemon: pokemon, onDismiss: {
 					// Dismiss whole view
 					onDismiss()
 				})
