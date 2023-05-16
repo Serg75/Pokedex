@@ -12,12 +12,14 @@ struct EvolutionChainView: View {
 	@ObservedObject var viewModel: EvolutionChainViewModel
 	
 	var body: some View {
-		VStack {
-			if let chain = viewModel.chain {
-				EvolutionChainLinkView(link: chain.chain!)
-					.padding()
-			} else {
-				ProgressView()
+		ScrollView {
+			VStack {
+				if let chain = viewModel.chain {
+					EvolutionChainLinkView(link: chain.chain!)
+						.padding()
+				} else {
+					ProgressView()
+				}
 			}
 		}
 	}

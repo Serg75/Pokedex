@@ -30,12 +30,21 @@ struct RandomPokemonView: View {
 					EvolutionChainView(viewModel: EvolutionChainViewModel(chain: evolutionChain))
 				}
 
-				Spacer()
-
 			} else {
 				ProgressView()
 			}
+
+			Button("Parents") {
+				self.isShowingCodeInputView = true
+			}
+			.padding(.top, 20)
+			.sheet(isPresented: $isShowingCodeInputView) {
+				ParentsView(onDismiss: {
+					self.isShowingCodeInputView = false
+				})
+			}
 		}
+		.padding(.vertical, 5)
 	}
 }
 
