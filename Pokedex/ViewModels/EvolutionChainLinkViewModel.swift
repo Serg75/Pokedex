@@ -99,28 +99,20 @@ import PokemonAPI
 		return nil
 	}
 	
-	func itemFor(evolution: PKMClainLink) -> Item? {
+	func itemFor(evolution: PKMClainLink) -> PresentedItem? {
 		if let item = items[evolution] ?? nil {
-			let name = item.name ?? "Unknown item"
-			if let url = URL(string: item.sprites?.default ?? "") {
-				return Item(name: name, url: url)
-			}
-			return Item(name: name)
+			return PresentedItem(item: item)
 		}
 		return nil
 	}
 	
-	func heldItemFor(evolution: PKMClainLink) -> Item? {
+	func heldItemFor(evolution: PKMClainLink) -> PresentedItem? {
 		if let item = heldItems[evolution] ?? nil {
-			let name = item.name ?? "Unknown item"
-			if let url = URL(string: item.sprites?.default ?? "") {
-				return Item(name: name, url: url)
-			}
-			return Item(name: name)
+			return PresentedItem(item: item)
 		}
 		return nil
 	}
-
+	
 	func minLevelFor(evolution: PKMClainLink) -> Int? {
 		if let details = evolution.evolutionDetails?.first {
 			return details.minLevel

@@ -21,4 +21,8 @@ struct PreviewData {
 	static var EvolutionChain308: PKMEvolutionChain = {
 		return Bundle.main.decodeJSON("evolution_chain308", type: PKMEvolutionChain.self)
 	}()
+
+	static var EvolutionItem210: PKMItem = {
+		return Bundle.main.decodeJSON("item210", type: PKMItem.self)
+	}()
 }

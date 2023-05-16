@@ -26,7 +26,9 @@
 		95AEE4042A124BC800BE1A17 /* evolution_chain308.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE4032A124BC800BE1A17 /* evolution_chain308.json */; };
 		95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */; };
 		95AEE4082A12672A00BE1A17 /* evolution_chain26.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE4072A12672A00BE1A17 /* evolution_chain26.json */; };
-		95AEE40B2A12E76D00BE1A17 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE40A2A12E76D00BE1A17 /* Item.swift */; };
+		95AEE40B2A12E76D00BE1A17 /* PresentedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE40A2A12E76D00BE1A17 /* PresentedItem.swift */; };
+		95AEE40D2A137C2D00BE1A17 /* EvolutionHeldItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEE40C2A137C2D00BE1A17 /* EvolutionHeldItemView.swift */; };
+		95AEE40F2A137EF700BE1A17 /* item210.json in Resources */ = {isa = PBXBuildFile; fileRef = 95AEE40E2A137EF700BE1A17 /* item210.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +70,9 @@
 		95AEE4032A124BC800BE1A17 /* evolution_chain308.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = evolution_chain308.json; sourceTree = "<group>"; };
 		95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainLinkView.swift; sourceTree = "<group>"; };
 		95AEE4072A12672A00BE1A17 /* evolution_chain26.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = evolution_chain26.json; sourceTree = "<group>"; };
-		95AEE40A2A12E76D00BE1A17 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		95AEE40A2A12E76D00BE1A17 /* PresentedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedItem.swift; sourceTree = "<group>"; };
+		95AEE40C2A137C2D00BE1A17 /* EvolutionHeldItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionHeldItemView.swift; sourceTree = "<group>"; };
+		95AEE40E2A137EF700BE1A17 /* item210.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = item210.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 				95AEE3F92A122D0E00BE1A17 /* pokemon607.json */,
 				95AEE4072A12672A00BE1A17 /* evolution_chain26.json */,
 				95AEE4032A124BC800BE1A17 /* evolution_chain308.json */,
+				95AEE40E2A137EF700BE1A17 /* item210.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			children = (
 				95AEE3FB2A122E8000BE1A17 /* EvolutionChainView.swift */,
 				95AEE4052A124F4100BE1A17 /* EvolutionChainLinkView.swift */,
+				95AEE40C2A137C2D00BE1A17 /* EvolutionHeldItemView.swift */,
 				95AEE3EC2A122B6200BE1A17 /* RandomPokemonView.swift */,
 			);
 			path = Views;
@@ -192,7 +198,7 @@
 		95AEE4092A12E73E00BE1A17 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				95AEE40A2A12E76D00BE1A17 /* Item.swift */,
+				95AEE40A2A12E76D00BE1A17 /* PresentedItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95AEE40F2A137EF700BE1A17 /* item210.json in Resources */,
 				954442862A12247B002D9C3C /* Preview Assets.xcassets in Resources */,
 				95AEE4082A12672A00BE1A17 /* evolution_chain26.json in Resources */,
 				954442832A12247B002D9C3C /* Assets.xcassets in Resources */,
@@ -338,11 +345,12 @@
 			files = (
 				95AEE3FC2A122E8000BE1A17 /* EvolutionChainView.swift in Sources */,
 				95AEE3FE2A122EB500BE1A17 /* EvolutionChainViewModel.swift in Sources */,
+				95AEE40D2A137C2D00BE1A17 /* EvolutionHeldItemView.swift in Sources */,
 				95AEE3F52A122C9500BE1A17 /* PreviewData.swift in Sources */,
 				95AEE3F32A122BED00BE1A17 /* RandomPokemonViewModel.swift in Sources */,
 				95AEE4002A123A3F00BE1A17 /* URL-ID.swift in Sources */,
 				95AEE3F82A122CE200BE1A17 /* Bundle-JSON.swift in Sources */,
-				95AEE40B2A12E76D00BE1A17 /* Item.swift in Sources */,
+				95AEE40B2A12E76D00BE1A17 /* PresentedItem.swift in Sources */,
 				9544427F2A12247A002D9C3C /* PokedexApp.swift in Sources */,
 				95AEE4022A123B5D00BE1A17 /* EvolutionChainLinkViewModel.swift in Sources */,
 				95AEE4062A124F4100BE1A17 /* EvolutionChainLinkView.swift in Sources */,
