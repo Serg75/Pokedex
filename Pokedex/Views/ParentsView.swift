@@ -71,6 +71,9 @@ struct ParentsView: View {
 				.cornerRadius(10)
 				.shadow(radius: 10)
 				.transition(.move(edge: .leading))
+				.alert(item: $viewModel.alertItem) { alertItem in
+					Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+				}
 			}
 			
 			if viewModel.showSecondView {

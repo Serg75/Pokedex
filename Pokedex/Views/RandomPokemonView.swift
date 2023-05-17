@@ -71,12 +71,6 @@ struct RandomPokemonView: View {
 	}
 }
 
-struct RandomPokemonView_Previews: PreviewProvider {
-	static var previews: some View {
-		RandomPokemonView(viewModel: RandomPokemonViewModel(pokemon: PreviewData.Pokemon607))
-	}
-}
-
 struct ParentButton: View {
 	@ObservedObject var viewModel: RandomPokemonViewModel
 	@Binding var isShowingCodeInputView: Bool
@@ -101,5 +95,11 @@ struct ParentButton: View {
 				}
 			}
 		}
+	}
+}
+
+struct RandomPokemonView_Previews: PreviewProvider {
+	static var previews: some View {
+		RandomPokemonView(viewModel: RandomPokemonViewModel(pokemon: PreviewData.Pokemon607))
 	}
 }

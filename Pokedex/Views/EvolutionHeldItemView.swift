@@ -28,7 +28,7 @@ struct EvolutionHeldItemView: View {
 
 struct EvolutionHeldItemView_Previews: PreviewProvider {
 	
-	// ERROR!
+	// TODO
 	// We have an issue in preview due to an error in PKMItemHolderPokemon.
 	// It declares pokemon as String? but in json it is a dictionary
     static var previews: some View {

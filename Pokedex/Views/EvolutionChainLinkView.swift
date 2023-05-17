@@ -99,12 +99,6 @@ struct EvolutionChainLinkView: View {
 	}
 }
 
-struct EvolutionChainLinkView_Previews: PreviewProvider {
-    static var previews: some View {
-		EvolutionChainLinkView(link: PreviewData.EvolutionChain26.chain!)
-    }
-}
-
 struct EvolutionItemView: View {
 	let item: PresentedItem
 
@@ -125,3 +119,8 @@ struct EvolutionItemView: View {
 	}
 }
 
+struct EvolutionChainLinkView_Previews: PreviewProvider {
+	static var previews: some View {
+		EvolutionChainLinkView(link: PreviewData.EvolutionChain26.chain!)
+	}
+}
