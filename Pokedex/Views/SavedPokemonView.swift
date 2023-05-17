@@ -64,7 +64,7 @@ struct SavedPokemonView: View {
 			.font(.title2)
 		}
 		.padding()
-		.background(Color(.systemGray6))
+		.background(Color(.systemGray5))
 		.cornerRadius(10)
 		.shadow(radius: 10)
 		.onAppear() {

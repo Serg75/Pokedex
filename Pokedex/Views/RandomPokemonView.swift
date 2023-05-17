@@ -13,35 +13,44 @@ struct RandomPokemonView: View {
 	@StateObject private var signals = Signals()
 
 	@State private var isShowingCodeInputView = false
-	@State private var isShowingSavedPokemonView = false
 	@State private var code = ""
 	
 	var body: some View {
-		VStack {
-			if let pokemon = viewModel.currentPokemon {
-				Text(pokemon.name?.capitalized ?? "No name")
-					.font(.title)
-				AsyncImage(url: URL(string: pokemon.sprites?.frontDefault ?? ""))
-					.frame(width: 150, height: 150)
-				Text("Type: \(pokemon.types?.first?.type?.name?.capitalized ?? "")")
-				
-				if let evolutionChain = viewModel.evolutionChain {
-					EvolutionChainView(viewModel: EvolutionChainViewModel(chain: evolutionChain))
+		ZStack {
+			VStack {
+				if let pokemon = viewModel.currentPokemon {
+					Text("Pokémon of the day")
+						.font(.title)
+					VStack {
+						AsyncImage(url: URL(string: pokemon.sprites?.frontDefault ?? ""))
+							.frame(width: 100, height: 100)
+						
+						Text(pokemon.name?.capitalized ?? "No name")
+							.font(.title2)
+					}
+					.padding(.bottom)
+					.frame(minWidth: 200)
+					.background(Color(.systemOrange).opacity(0.4))
+					.clipShape(RoundedRectangle(cornerRadius: 10))
+					
+					if let evolutionChain = viewModel.evolutionChain {
+						
+						Text("Evolution:")
+							.font(.title2)
+							.bold()
+							.padding(.bottom, -10)
+							.padding(.top, 20)
+						
+						EvolutionChainView(viewModel: EvolutionChainViewModel(chain: evolutionChain))
+					}
+					
+					Spacer()
+					
+				} else {
+					ProgressView()
 				}
-
-			} else {
-				ProgressView()
 			}
-
-			Button("Parents") {
-				self.isShowingCodeInputView = true
-			}
-			.padding(.top, 20)
-			.sheet(isPresented: $isShowingCodeInputView) {
-				ParentsView(pokemon: $viewModel.currentPokemon, onDismiss: {
-					self.isShowingCodeInputView = false
-				})
-			}
+			ParentButton(viewModel: viewModel, isShowingCodeInputView: $isShowingCodeInputView)
 		}
 		.padding(.vertical, 5)
 		.environmentObject(signals)
@@ -65,5 +74,32 @@ struct RandomPokemonView: View {
 struct RandomPokemonView_Previews: PreviewProvider {
 	static var previews: some View {
 		RandomPokemonView(viewModel: RandomPokemonViewModel(pokemon: PreviewData.Pokemon607))
+	}
+}
+
+struct ParentButton: View {
+	@ObservedObject var viewModel: RandomPokemonViewModel
+	@Binding var isShowingCodeInputView: Bool
+	
+	var body: some View {
+		VStack {
+			Spacer()
+			HStack {
+				Spacer()
+				Button(action: {
+					self.isShowingCodeInputView = true
+				}) {
+					Image(systemName: "person.2.circle")
+						.resizable()
+						.frame(width: 30, height: 30)
+				}
+				.padding(.trailing, 20)
+				.sheet(isPresented: $isShowingCodeInputView) {
+					ParentsView(pokemon: $viewModel.currentPokemon, onDismiss: {
+						self.isShowingCodeInputView = false
+					})
+				}
+			}
+		}
 	}
 }

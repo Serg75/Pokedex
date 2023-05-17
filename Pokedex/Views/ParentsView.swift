@@ -67,7 +67,7 @@ struct ParentsView: View {
 					.padding(.bottom, 10)
 				}
 				.padding()
-				.background(Color(.systemGray6))
+				.background(Color(.systemGray5))
 				.cornerRadius(10)
 				.shadow(radius: 10)
 				.transition(.move(edge: .leading))

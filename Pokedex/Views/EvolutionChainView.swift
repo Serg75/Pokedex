@@ -16,7 +16,6 @@ struct EvolutionChainView: View {
 			VStack {
 				if let chain = viewModel.chain {
 					EvolutionChainLinkView(link: chain.chain!)
-						.padding()
 				} else {
 					ProgressView()
 				}

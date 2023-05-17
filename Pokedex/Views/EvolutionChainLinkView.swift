@@ -16,7 +16,7 @@ struct EvolutionChainLinkView: View {
 	}
 	
 	var body: some View {
-		VStack {
+		VStack(alignment: .center) {
 			AsyncImage(url: viewModel.speciesImage)
 				.frame(width: 50, height: 50)
 				.padding(0)
@@ -26,13 +26,13 @@ struct EvolutionChainLinkView: View {
 				.frame(maxWidth: .infinity)
 			
 			if let evolvesTo = viewModel.evolvesTo {
-				HStack {
+				HStack(alignment: .bottom) {
 					ForEach(0..<evolvesTo.count, id: \.self) { index in
 						let evolution = evolvesTo[index]
 						VStack {
 							Image(systemName: "rectangle.portrait.fill")
 								.resizable()
-								.frame(width: 3, height: 20)
+								.frame(width: 3, height: 15)
 								.foregroundColor(.blue)
 							
 							evolutionCondition(evolution: evolution)
@@ -42,7 +42,7 @@ struct EvolutionChainLinkView: View {
 								.resizable()
 								.frame(width: 3, height: 15)
 								.foregroundColor(.blue)
-								.padding(.top, -3)
+								.padding(.top, -5)
 							Image(systemName: "arrowtriangle.down.fill")
 								.resizable()
 								.frame(width: 15, height: 15)
@@ -89,9 +89,9 @@ struct EvolutionChainLinkView: View {
 		.padding(.horizontal, 10)
 		.padding(.vertical, 3)
 		.background(Color(.systemGray6).opacity(0.9))
-		.clipShape(Capsule())
+		.clipShape(RoundedRectangle(cornerRadius: 10))
 		.overlay(
-			Capsule()
+			RoundedRectangle(cornerRadius: 10)
 				.strokeBorder(.gray, lineWidth: 0.7)
 		)
 		.frame(maxWidth: .infinity)
@@ -120,6 +120,7 @@ struct EvolutionItemView: View {
 					.font(.caption)
 					.bold()
 			}
+			.frame(minWidth: 50)
 		}
 	}
 }
