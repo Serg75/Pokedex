@@ -52,20 +52,25 @@ struct RandomPokemonView: View {
 			}
 			ParentButton(viewModel: viewModel, isShowingCodeInputView: $isShowingCodeInputView)
 		}
+		.onAppear {
+			Task {
+				await viewModel.fetchRandomPokemon()
+			}
+		}
 		.padding(.vertical, 5)
 		.environmentObject(signals)
-		.onChange(of: signals.changePokemon) { newValue in
-			if newValue {
-				switch signals.pokemonType {
-				case .random:
-					viewModel.fetchRandomPokemon()
-					signals.changePokemon = false
-				case .exact(let id):
-					viewModel.fetchExactPokemon(id: id)
-					signals.changePokemon = false
-				case .none:
-					print("none")
+		.onChange(of: signals.changePokemon) { _ in
+			switch signals.pokemonType {
+			case .random:
+				Task {
+					await viewModel.fetchRandomPokemon()
 				}
+			case .exact(let id):
+				Task {
+					await viewModel.fetchExactPokemon(id: id)
+				}
+			case .none:
+				print("none")
 			}
 		}
 	}

@@ -4,6 +4,7 @@
 //
 //  Created by Sergey Slobodenyuk on 2023-05-16.
 //
+//  A Pokemon item to be presented on the view, with a name and optional URL.
 
 import Foundation
 import PokemonAPI

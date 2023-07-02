@@ -37,4 +37,9 @@ The project is structured as follows:
 - `EvolutionChainLinkView`: A SwiftUI view displaying a single link in the evolution chain.
 - `EvolutionItemView`: A SwiftUI view displaying an evolution item.
 - `EvolutionHeldItemView`: A SwiftUI view displaying an evolution held item.
+- `PokemonServiceProtocol`: This file defines the PokemonServiceProtocol, which is a protocol specifying a subset of the PKMPokemonService methods used in the code. This protocol reduces the amount of code needed for creating mocks and simplifies testing.
+- `TaskExecutor`: This file contains the struct, which provides a method that executes a given task repeatedly until the task returns true or the maximum attempt count is reached. The delay between each execution increases exponentially.
 - `PreviewData`: A struct providing preview data for SwiftUI previews.
+- `RandomPokemonViewModelTests`: This class contains unit tests for the `RandomPokemonViewModel` class, which is responsible for providing the data and logic for the random Pokemon feature in the Pokedex app.
+- `TaskExecutorTests`: This class contains unit tests for the `TaskExecutor` class, which is responsible for executing tasks asynchronously with repetition until they succeed.
+- `XCTestCase+Combine`: This code extension adds a utility method to the `XCTestCase` class for handling expectations on publishers with the `@Published` property wrapper.

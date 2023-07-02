@@ -11,76 +11,106 @@ import PokemonAPI
 @MainActor class RandomPokemonViewModel: ObservableObject {
 	@Published var currentPokemon: PKMPokemon?
 	@Published var evolutionChain: PKMEvolutionChain?
+	
+	let pokemonService: PokemonServiceProtocol
+	let taskExecutor: TaskExecutorProtocol
 
 	private var isFetching = false
 
-	init() {
-		guard ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" else {
-			return
-		}
-
-		fetchRandomPokemon()
+	init(pokemonService: PokemonServiceProtocol = PokemonAPI().pokemonService,
+		 taskExecutor: TaskExecutorProtocol = TaskExecutor()) {
+		self.pokemonService = pokemonService
+		self.taskExecutor = taskExecutor
 	}
 	
-	init(pokemon: PKMPokemon) {
+	init(pokemon: PKMPokemon,
+		 pokemonService: PokemonServiceProtocol = PokemonAPI().pokemonService,
+		 taskExecutor: TaskExecutorProtocol = TaskExecutor()) {
+
 		self.currentPokemon = pokemon
+		self.pokemonService = pokemonService
+		self.taskExecutor = taskExecutor
+
 		Task {
 			await fetchEvolutionChain(pokemonId: pokemon.id)
 		}
 	}
 
-	func fetchRandomPokemon() {
-		fetchPokemon {
-			let pokemons = try await PokemonAPI().pokemonService.fetchPokemonList(paginationState: .initial(pageLimit: 5))
-			
-			return self.generateRandomPokemonID(pokemonsCount: pokemons.count!)
-		}
-	}
-
-	func fetchExactPokemon(id: Int) {
-		fetchPokemon { id }
-	}
-
-	func fetchPokemon(takePokemonID: @escaping () async throws -> Int) {
-		guard !isFetching else { return }
-		isFetching = true
-
-		Task {
-			currentPokemon = nil
-			var pokemonID = -1
-			var isValid = false
+	func fetchRandomPokemon() async {
+		var pokemonCount = 0
+		
+		let countWasFetched = await taskExecutor.runUntilSuccess(attemptCount: 10) {
+			var success = false
 			do {
-				pokemonID = try await takePokemonID()
-				let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(pokemonID)
-				isValid = true
-				
-				DispatchQueue.main.async {
-					self.currentPokemon = pokemon
-				}
-				
-			} catch HTTPError.serverResponse(HTTPStatus(rawValue: 404), _ ) {
-				print("The web service returned status code 404")
+				let pokemons = try await self.pokemonService.fetchPokemonList(paginationState: .initial(pageLimit: 5))
+				pokemonCount = pokemons.count!
+				success = true
 			} catch {
-				print(error.localizedDescription)
+				print("Fetching pokemon list failed with error: \(error.localizedDescription)")
 			}
 
-			self.isFetching = false
-			
-			guard isValid else {
-				// refetch pokemon
-				self.fetchRandomPokemon()
-				return
-			}
-			
-			await fetchEvolutionChain(pokemonId: pokemonID)
+			return success
 		}
-	}
-
-	private func generateRandomPokemonID(pokemonsCount: Int) -> Int {
-		Int.random(in: 1..<pokemonsCount)
+		
+		guard countWasFetched else { return }
+		
+		// generateRandomPokemonID has an assertion, no need extra one here
+		guard let pokemonID = try? self.generateRandomPokemonID(pokemonCount: pokemonCount) else { return }
+		
+		await fetchExactPokemon(id: pokemonID)
 	}
 	
-	private func fetchEvolutionChain(pokemonId: Int?) async {
+	func fetchExactPokemon(id: Int) async {
+		let success = await taskExecutor.runUntilSuccess(attemptCount: 10) {
+			await fetchPokemon(pokemonId: id)
+		}
+		guard success else {
+			print("Fetching pokemon didn't have success after several attempts")
+			return
+		}
+
+		let anotherSuccess = await taskExecutor.runUntilSuccess(attemptCount: 10) {
+			await fetchEvolutionChain(pokemonId: id)
+		}
+		if !anotherSuccess {
+			print("Fetching evolution chain didn't have success after several attempts")
+		}
+	}
+	
+	func fetchPokemon(pokemonId: Int) async -> Bool {
+		guard pokemonId > 0 else { return false }
+		guard !isFetching else { return false }
+		isFetching = true
+		var isValid = false
+
+		currentPokemon = nil
+		var pokemon: PKMPokemon?
+		do {
+			pokemon = try await pokemonService.fetchPokemon(pokemonId)
+			isValid = true
+		} catch HTTPError.serverResponse(HTTPStatus(rawValue: 404), _ ) {
+			print("The web service returned status code 404")
+		} catch {
+			print(error.localizedDescription)
+		}
+
+		self.isFetching = false
+		
+		if isValid {
+			DispatchQueue.main.async {
+				self.currentPokemon = pokemon
+			}
+		}
+		
+		return isValid
+	}
+
+	private func generateRandomPokemonID(pokemonCount: Int) throws -> Int {
+		assert(pokemonCount > 0, "pokemonCount should be > 0")
+		return Int.random(in: 1..<pokemonCount)
+	}
+	
+	func fetchEvolutionChain(pokemonId: Int?) async -> Bool {
 		do {
 			let species = try await PokemonAPI().pokemonService.fetchPokemonSpecies(pokemonId!)
 			let evoChainURL = URL(string: (species.evolutionChain?.url)!)
@@ -89,8 +119,13 @@ import PokemonAPI
 			DispatchQueue.main.async {
 				self.evolutionChain = evolutionChain
 			}
+			
+			return true
+			
 		} catch {
-			print(error.localizedDescription)
+			print("Fetching pokemon species / evolution chain failed with error: \(error.localizedDescription)")
+			
+			return false
 		}
 	}
 }

@@ -41,7 +41,7 @@ struct SavedPokemonView: View {
 			
 			Button("Take selected Pokémon") {
 				signals.pokemonType = .exact(selectedPokemon!)
-				signals.changePokemon = true
+				signals.changePokemon.toggle()
 				onDismiss()
 			}
 			.disabled(selectedPokemon == nil)
@@ -50,7 +50,7 @@ struct SavedPokemonView: View {
 			
 			Button("New Random Pokémon") {
 				signals.pokemonType = .random
-				signals.changePokemon = true
+				signals.changePokemon.toggle()
 				onDismiss()
 			}
 			.font(.title2)

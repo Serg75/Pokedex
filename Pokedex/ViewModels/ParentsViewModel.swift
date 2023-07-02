@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor class ParentsViewModel: ObservableObject {
 	@Published var code = ""
-	let correctCode = "1256"	// hardcoded code, wil be improved in the next versions
+	let correctCode = "1256"	// hardcoded value, will be improved in the next versions
 	
 	@Published var alertItem: AlertItem?
 	@Published var showSecondView = false
