@@ -1,6 +1,8 @@
 # Pokemon Evolution Chain
 
-This project demonstrates the evolution chain of Pokemon using data from the PokemonAPI.
+This project demonstrates the evolution chain of Pokemon using data from the PokemonAPI.\
+\
+It was created as a test assignment - see Requirements.pdf.
 
 ## Features
 
